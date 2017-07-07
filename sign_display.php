@@ -1,4 +1,12 @@
-<?php include functions.php; ?>
+<?php include "functions.php"; ?>
+<?php 
+
+if(isset($_POST['concentrates'])){
+ populate_display("concentrate");
+} else {
+    populate_display("flower");
+}
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -15,8 +23,6 @@
     <title>Document</title>
 </head>
 <body>
-
-   nothing to see yet
     
 </body>
 </html>

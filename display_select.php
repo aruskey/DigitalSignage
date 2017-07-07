@@ -30,7 +30,7 @@
 
 <div class="container-fluid maincontainer">
  <div class="card card-block">
-    <form action="display_select.php" method="post">
+    <form action="sign_display.php" method="post">
        <h1>Select Display Option </h1>
         <input type="checkbox" name="flower"> Flower <br>
         <input type="checkbox" name="concentrates"> Concentrates <br> 
