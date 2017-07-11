@@ -1,11 +1,14 @@
 <?php include "functions.php"; ?>
-<?php 
+<?php
 
 if(isset($_POST['concentrates'])){
- populate_display("concentrate");
+ select_from_category("Concentrate");
 } else {
-    populate_display("flower");
+ select_from_category("Flower");
 }
+
+//select_from_category("flower");
+//populate_display();
 ?>
 
 <!DOCTYPE html>
@@ -23,6 +26,8 @@ if(isset($_POST['concentrates'])){
     <title>Document</title>
 </head>
 <body>
-    
+
+
+
 </body>
 </html>
