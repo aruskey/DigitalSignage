@@ -74,15 +74,16 @@ function display_hybrid(){
     echo "
      <div style='color:white'>
       <div style='float:left;width:45vw'>
-            <div style='text-decoration:underline'><h2>Hybrid</h2></div> 
-        <div class='testgrid'>";
-
-    print_pricing_header();
+        <div class='row'>
+            <div class ='col-md-6' style='margin-left:0px;text-decoration:underline'><h2>Hybrid</h2></div>
+        </div>"; 
+        print_pricing_header();
         while($row = mysqli_fetch_assoc($result)){
-         echo "<div>" . $row['post_title'] . "</div>";
+         echo "<div class='row'><div class='col-md-6'>" . $row['post_title'] . "</div>";
          get_child_price($row['ID']); 
+         echo "</div>";
         }
-      echo "</div></div>";
+      echo "</div>";
       
 //create pre-rolls      
     $query =
@@ -129,14 +130,16 @@ function display_hybrid(){
     echo "
      <div style='color:white'>
       <div style='float:left;width:45vw'>
-            <div style='text-decoration:underline'><h2>CBD Strains</h2></div>";
-        echo "<div class='testgrid'>";
+        <div class='row'>
+            <div class ='col-md-6' style='margin-left:0px;text-decoration:underline'><h2>CBD Strains</h2></div>
+        </div>"; 
         print_pricing_header();
         while($row = mysqli_fetch_assoc($result)){
-         echo "<div>" . $row['post_title'] . "</div>";
+         echo "<div class='row'><div class='col-md-6'>" . $row['post_title'] . "</div>";
          get_child_price($row['ID']); 
+         echo "</div>";
         }
-      echo "</div></div></div>";
+      echo "</div></div>";
       
 
 
@@ -167,16 +170,18 @@ function display_flowers(){                         //display Sativa+India ... s
         die('Query Failed' . mysqli_error());
     }
     echo "
-     <div style='color:white;font-weight:bold'>
+     <div style='color:white'>
       <div style='float:left;width:45vw'>
-            <div style='margin-left:0px;text-decoration:underline'><h2>Indica</h2></div>
-            <div class='testgrid'>";
-            print_pricing_header();
+        <div class='row'>
+            <div class ='col-md-3' style='margin-left:0px;text-decoration:underline'><h2>Indica</h2></div>
+        </div>"; 
+        print_pricing_header();
         while($row = mysqli_fetch_assoc($result)){
-         echo "<div>" . $row['post_title'] . "</div>";
+         echo "<div class='row'><div class='col-md-3'>" . $row['post_title'] . "</div>";
          get_child_price($row['ID']); 
+         echo "</div>";
         }
-      echo "</div></div>";
+      echo "</div>";
     //-------------------------Sativas
     $query = 
         "SELECT wp_posts.ID, wp_posts.post_title 
@@ -197,14 +202,14 @@ function display_flowers(){                         //display Sativa+India ... s
         die('Query Failed' . mysqli_error());
     }
     echo "<div style='float:right;width:45vw'>
-            <div style='text-decoration:underline'><h2>Sativa</h2></div>
-            <div class='testgrid'>"; 
+            <div style='margin-left:0px;text-decoration:underline'><h2>Sativa</h2></div>"; 
                 print_pricing_header();
                 while($row = mysqli_fetch_assoc($result)){
-                echo "<div>" . $row['post_title'] . "</div>";
+                echo "<div class='row'><div class='col-md-3'>" . $row['post_title'] . "</div>";
                 get_child_price($row['ID']); 
+                echo "</div>";
                 }
-    echo "</div></div></div>";
+    echo "</div></div>";
     
 }
 
@@ -228,7 +233,7 @@ function get_child_price($id){
             $sort[$quantities[$row['meta_value']]] = get_price($row['post_id']);
         }
         foreach($sort as $val){
-            echo "<div style='text-align:right'>". $val ."</div>";
+            echo "<div class='col-xs-1' style='margin-left:15px;text-align:right'>". $val ."</div>";
     }
 }
 
@@ -247,9 +252,11 @@ function get_price($id){
 function print_pricing_header(){
         $sizes = array("Gram", "1/8", "1/4", "1/2", "OZ");    
     echo "
-        <div style='text-decoration:underline'>Strain</div>";
+    <div class='row'>
+        <div class='col-md-3' style='text-decoration:underline'>Strain</div>";
     foreach($sizes as $val){
-        echo "<div style='text-decoration:underline;text-align:right'>". $val ."</div>";
+        echo "<div class='col-xs-1' style='margin-left:15px;text-decoration:underline;vertical-align:text-bottom'>". $val ."</div>";
     }
+    echo "</div>";
 }
 ?>

@@ -25,6 +25,11 @@ if(isset($_POST['concentrates'])){
     height:100vh;
     margin: 0px;
     }
+    .testgrid{
+        display: grid;
+        grid-template-columns:20vw 3vw 3vw 3vw 3vw 3vw;
+        grid-column-gap: 1vw;
+    }
 </style>
     <title>Document</title>
 </head>
