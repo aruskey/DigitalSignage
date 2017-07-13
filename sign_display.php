@@ -3,8 +3,10 @@
 
 if(isset($_POST['concentrates'])){
  select_from_category("Concentrate");
+} else if(isset($_POST['flower_IS'])){
+ select_from_category("flower_IS");
 } else {
- select_from_category("Flower");
+  select_from_category("flower_HPC");
 }
 
 //select_from_category("flower");
@@ -21,6 +23,7 @@ if(isset($_POST['concentrates'])){
     background-repeat: no-repeat;
     background-size:cover;
     height:100vh;
+    margin: 0px;
     }
 </style>
     <title>Document</title>

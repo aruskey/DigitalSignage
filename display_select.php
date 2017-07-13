@@ -30,7 +30,8 @@
  <div class="card card-block">
     <form action="sign_display.php" method="post">
        <h1>Select Display Option </h1>
-        <input type="checkbox" name="flower"> Flower <br>
+        <input type="checkbox" name="flower_IS"> Indica/Sativa Flower Board <br>
+        <input type="checkbox" name="flower_HPC"> Hybrid/Pre-Roll/CBD Board <br>
         <input type="checkbox" name="concentrates"> Concentrates <br> 
         <input type="submit" name-"submit" value="Submit" class="btn btn-primary">
     </form>
