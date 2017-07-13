@@ -72,7 +72,7 @@ function display_hybrid(){
         die('Query Failed' . mysqli_error());
     }
     echo "
-     <div style='color:white'>
+     <div style='color:white;padding:10px;font-weight:bold'>
       <div style='float:left;width:45vw'>
             <div style='text-decoration:underline'><h2>Hybrid</h2></div> 
         <div class='testgrid'>";
@@ -82,30 +82,8 @@ function display_hybrid(){
          echo "<div>" . $row['post_title'] . "</div>";
          get_child_price($row['ID']); 
         }
-      echo "</div></div>";
+      echo "</div>";
       
-//create pre-rolls      
-    $query =
-        "SELECT wp_postmeta.meta_value, wp_posts.post_title
-        FROM wp_postmeta
-        INNER JOIN wp_posts
-        ON wp_posts.ID = wp_postmeta.post_id
-        WHERE wp_postmeta.meta_key = '_price'
-        AND wp_posts.ID IN (2737, 2734, 2730)
-        AND wp_posts.post_parent='0'
-        ORDER BY wp_posts.post_title ASC";
-    $result = mysqli_query($connection, $query);
-    echo "<div class='row' style='text-decoration:underline'>
-          <div class='col-md-6'><h1>Pre-Roll</h1></div>
-          <div class='col-xs-1' style='margin-left:15px'>Single</div>
-          <div class='col-xs-1' style='margin-left:15px'>5 PK</div>
-          </div>";
-    while($row = mysqli_fetch_assoc($result)){
-        echo "<div class='row'>";
-        echo "<div class='col-md-6'>" . $row['post_title'] . "</div>";
-        echo "<div class='col-xs-1' style='margin-left:15px'>". $row['meta_value'] ."</div></div>";
-    }
-  echo "</div>";
 
 //create CBD     
  $query = 
@@ -127,17 +105,52 @@ function display_hybrid(){
         die('Query Failed' . mysqli_error());
     }
     echo "
-     <div style='color:white'>
-      <div style='float:left;width:45vw'>
-            <div style='text-decoration:underline'><h2>CBD Strains</h2></div>";
-        echo "<div class='testgrid'>";
-        print_pricing_header();
+        <div style='text-decoration:underline;padding-top:50px'><h2>CBD Strains</h2></div>
+        <div class='testgrid'>";
+        //print_pricing_header();
         while($row = mysqli_fetch_assoc($result)){
          echo "<div>" . $row['post_title'] . "</div>";
          get_child_price($row['ID']); 
         }
       echo "</div></div></div>";
       
+//create pre-rolls      
+    $query =
+        "SELECT wp_posts.post_title
+        FROM wp_posts
+        INNER JOIN wp_postmeta
+        ON wp_posts.ID = wp_postmeta.post_id
+        WHERE wp_postmeta.meta_value = 'instock'
+        AND wp_posts.ID IN (2737, 2734, 2730)
+        ORDER BY wp_posts.post_title ASC";
+    $result = mysqli_query($connection, $query);
+    
+    echo "<div style='color:white;font-weight:bold'>
+          <div class='prerollgrid'>
+            <div style='text-decoration:underline'><h1>Pre-Roll</h1></div>
+            <div style='position:relative'><span style='text-decoration:underline;right:0;position:absolute;bottom:0'>Single</span></div>
+            <div style='position:relative'><span style='text-decoration:underline;right:0;position:absolute;bottom:0'>5 PK</span></div>";
+    //display the pre rolls from stock
+    while($row = mysqli_fetch_assoc($result)){
+        echo "<div style='text-align:left'>" . $row['post_title'] . "</div>";
+        echo "<div style='text-align:right'> 5 </div>";
+        echo "<div style='text-align:right'> 20 </div>";
+    }
+    //display the custom pre-rolls(silver, gold, plat etc)
+    echo "
+    <div style='padding-top:100px;text-align:left'> Pre-Roll, Bronze </div>
+    <div style='padding-top:100px;text-align:right'> 5.00 </div>
+    <div style='text-align:right'>  </div>
+    <div style='text-align:left'> Pre-Roll, Silver </div>
+    <div style='text-align:right'> 5.50 </div>
+    <div style='text-align:right'>  </div>
+    <div style='text-align:left'> Pre-Roll, Gold </div>
+    <div style='text-align:right'> 5.99 </div>
+    <div style='text-align:right'>  </div>
+    <div style='text-align:left'> Pre-Roll, Platinum </div>
+    <div style='text-align:right'> 6.99 </div>
+    <div style='text-align:right'>  </div>";
+  echo "</div></div>";
 
 
 }
@@ -167,7 +180,7 @@ function display_flowers(){                         //display Sativa+India ... s
         die('Query Failed' . mysqli_error());
     }
     echo "
-     <div style='color:white;font-weight:bold'>
+     <div style='color:white;font-weight:bold;padding:10px'>
       <div style='float:left;width:45vw'>
             <div style='margin-left:0px;text-decoration:underline'><h2>Indica</h2></div>
             <div class='testgrid'>";
