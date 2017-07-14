@@ -4,7 +4,7 @@
 <?php
 ini_set('MAX_EXECUTION_TIME', -1);
 //function connect_db(){
-$connection = mysqli_connect('107.180.47.5', 'ar_brainy', 'Grumpo12', 'i2974612_wp1');
+$connection = mysqli_connect('107.180.47.5', 'ar_brainy', 'Grumpo12', 'i2974612_wp1'); //for remote use 107.180.47.5
 if($connection){
     return $connection;
 } else {
@@ -39,10 +39,75 @@ function select_from_category($category){
 }
 
 
+
 function display_concentrate(){
-    
+echo "<div class='shattergrid' style='color:white;font-weight:bold'>
+<div> 0.5g = $20.00  1g = $40.00 </div>
+<div> 0.5g = $20.00  1g = $40.00 </div>";
+    display_shatter(31);
+    display_budder(72);
+    display_hash(29);
+echo "</div>";    
 }
 
+function display_shatter($taxonomy_id){
+ global $connection;
+ $query = 
+     "
+     SELECT DISTINCT wp_posts.ID, wp_posts.post_title, tr1.term_taxonomy_id
+     FROM wp_posts
+     INNER JOIN wp_term_relationships tr1
+     ON wp_posts.ID = tr1.object_id
+     INNER JOIN wp_postmeta
+     ON wp_posts.ID = wp_postmeta.post_id
+     WHERE tr1.term_taxonomy_id = '$taxonomy_id'
+     AND wp_postmeta.meta_value = 'instock'
+    ";
+    $result = mysqli_query($connection, $query);
+    echo "<div class='gridtop'>";
+    while($row = mysqli_fetch_assoc($result)){
+        if($row[''])
+        echo "<div class='shatterelement'>" . $row['post_title'] . "</div>"; 
+    } 
+    echo "</div>";
+}
+
+function display_budder($taxonomy_id){
+ global $connection;
+ $query = 
+     "
+     SELECT wp_posts.ID, wp_posts.post_title, wp_term_relationships.term_taxonomy_id
+     FROM wp_posts
+     INNER JOIN wp_term_relationships
+     ON wp_posts.ID = wp_term_relationships.object_id
+     INNER JOIN wp_postmeta
+     ON wp_posts.ID = wp_postmeta.post_id
+     WHERE wp_term_relationships.term_taxonomy_id = '$taxonomy_id'
+     AND wp_postmeta.meta_value = 'instock'
+    ";
+    $result = mysqli_query($connection, $query);
+    while($row = mysqli_fetch_assoc($result)){
+        echo "<div class='budderelement'>" . $row['post_title'] . "</div>"; 
+    } 
+}
+function display_hash($taxonomy_id){
+global $connection;
+ $query = 
+     "
+     SELECT wp_posts.ID, wp_posts.post_title, wp_term_relationships.term_taxonomy_id
+     FROM wp_posts
+     INNER JOIN wp_term_relationships
+     ON wp_posts.ID = wp_term_relationships.object_id
+     INNER JOIN wp_postmeta
+     ON wp_posts.ID = wp_postmeta.post_id
+     WHERE wp_term_relationships.term_taxonomy_id = '$taxonomy_id'
+     AND wp_postmeta.meta_value = 'instock'
+    ";
+    $result = mysqli_query($connection, $query);
+    while($row = mysqli_fetch_assoc($result)){
+        echo "<div class='hashelement'>" . $row['post_title'] . "</div>"; 
+    } 
+}
 
 
 //---------------------------------------------

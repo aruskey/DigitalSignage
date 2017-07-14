@@ -28,12 +28,15 @@
 
 <div class="container-fluid maincontainer">
  <div class="card card-block">
-    <form action="sign_display.php" method="post">
+    <form action="concentrate_display.php" method="post">
        <h1>Select Display Option </h1>
-        <input type="checkbox" name="flower_IS"> Indica/Sativa Flower Board <br>
-        <input type="checkbox" name="flower_HPC"> Hybrid/Pre-Roll/CBD Board <br>
-        <input type="checkbox" name="concentrates"> Concentrates <br> 
-        <input type="submit" name-"submit" value="Submit" class="btn btn-primary">
+        <input style='padding-right:5px' type="submit" name="submit" value="Concentrates" class="btn btn-primary">
+    </form>
+    <form action="flower1_display.php" method="post">
+        <input style='padding-right:5px' type="submit" name="submit" value="Flower1" class="btn btn-primary">
+    </form>
+    <form action="flower2_display.php" method="post">
+        <input type="submit" name="submit" value="Flower2" class="btn btn-primary">
     </form>
  </div>        
 </div>
